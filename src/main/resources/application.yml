@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: alipayDemo
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  tomcat:
+    uri-encoding: UTF-8
+  ########################################################
+  ###DATASOURCE
+  ########################################################
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: true
+      testOnReturn: true
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,log4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      useGlobalDataSourceStat: true
+      #数据库连接地址
+      url: jdbc:mysql://58.247.46.122:13306/stdv5_2_dev?useUnicode=true&allowMultiQueries=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+      #用户名
+      username: ebs
+      #密码
+      password: ebs_stdv5_11
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp
+      suffix: .jsp
+
+#公共配置与profiles选择无关 mapperLocations指的路径是src/main/resources
+mybatis:
+  #typeAliasesPackage: com.xuzw.dao.entity
+  mapperLocations: classpath:mapper/*.xml
+
